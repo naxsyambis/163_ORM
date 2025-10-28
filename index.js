@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const app = express();
 const db = require('./models');
@@ -10,17 +11,17 @@ app.listen(PORT, async () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
-db.Sequelize.sync().then((result) => {
+db.sequelize.sync().then((result) => {
     app.listen(3000, () => {
         console.log(`Server Started`);
     })
-
+})
     .catch((err) => {
         console.log(err);
     })
-})
 
-app.post('komik', async (req, res) => {
+
+app.post('/komik', async (req, res) => {
     const data = req.body;
     try{
         const komik = await db.Komik.create(data);
@@ -30,7 +31,7 @@ app.post('komik', async (req, res) => {
     }
 })
 
-app.get('komik', async (req, res) => {
+app.get('/komik', async (req, res) => {
     const data = req.body;
     try{
         const komik = await db.Komik.findAll();
@@ -68,3 +69,5 @@ app.delete('/komik/:id', async (req, res) => {
         res.status(500).send({message: error.message});
     }
 });
+
+
