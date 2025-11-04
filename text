@@ -1,0 +1,87 @@
+Minggu depan kita ucp 
+ORM berfungsi untuk 
+1.	npm init -y
+2.	npm install express mysql2 sequelize dotenv
+3.	npm install -D nodemon sequelize-cli // jangan lupa spasi sblum -D
+4.	npm install express
+5.	npm install sequelize sqlite3
+6.	$ git init 
+7.	Bikin file .gitignore
+8.	/node_modules
+9.	Di file package json tulis di bawah test "start": "nodemon index.js"
+10.	Bikin file .sequelizerc
+11.	Didalam file .sequelizerc tambahkan ini 
+
+const path = require("path")
+
+module.export = {
+    'config' : path.resolve('config', 'config.js'),
+    'models-path' : path.resolve ('models'),
+    'seeders-path' : path.resolve ('seeders'),
+    'migrations-path' :path.resolve ('migrations')
+}
+12.	npx sequelize init //dia akan membuat folder
+13.	folder di config ada file config.json Ganti ke config.js
+14.	terus dalam config.js
+15.	tulis ini
+16.	require ('dotenv').config();
+17.	
+18.	const development =
+19.	{ 
+20.	    "username": process.env.DB_USER,
+21.	    "password": process.env.DB_PASSWORD,
+22.	    "database": process.env.DB_NAME,
+23.	    "host": process.env.DB_HOST,
+24.	    "dialect": process.env.DB_DIALECT
+25.	  }
+26.	
+27.	  const test =
+28.	 {
+29.	    "username": process.env.DB_USER,
+30.	    "password": process.env.DB_PASSWORD,
+31.	    "database": process.env.DB_NAME,
+32.	    "host": process.env.DB_HOST,
+33.	    "dialect": process.env.DB_DIALECT
+34.	  }
+35.	
+36.	  const production = 
+37.	 {
+38.	    "username": process.env.DB_USER,
+39.	    "password": process.env.DB_PASSWORD,
+40.	    "database": process.env.DB_NAME,
+41.	    "host": process.env.DB_HOST,
+42.	    "dialect": process.env.DB_DIALECT
+43.	  }
+44.	
+45.	module.exports = {development, test, production}
+14. bikin file .env
+15. tulis didalamnya
+
+DB_USER=root
+DB_PASSWORD=Bismillah123
+DB_NAME=bioskop
+DB_HOST=localhost
+DB_DIALECT=mysql
+DB_PORT=3309
+
+15. git add . 
+16. git branch -M main diterminal bash
+17. git remote add origin https://github.com/nabilaghnaaa/154_ORM.git
+17. git push -u origin main
+18. dalam folder models bikin file komik.js berisi pengaturan table database
+19. lalu buat file index buat 
+
+// minggu ini ucpnya sampai config sampai models-path 
+
+
+CREATE DATABASE orm;
+
+USE orm;
+CREATE TABLE komik(
+	id INT auto_increment PRIMARY KEY,
+    judul VARCHAR(255) NOT NULL,
+    penulis VARCHAR (255) NOT NULL,
+    deskripsi TEXT NOT NULL,
+    createdAt DATETIME,
+    updatedAt DATETIME
+);
